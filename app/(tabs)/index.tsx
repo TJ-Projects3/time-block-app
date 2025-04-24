@@ -1,74 +1,78 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, LogBox } from "react-native";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { HelloWave } from "@/components/HelloWave";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
       headerImage={
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+          source={require("@/assets/images/rb-gradient.jpg")}
+          style={{ width: "100%", height: "100%", resizeMode: "cover" }}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+      }
+    >
+      <ThemedView>
+        <ThemedText type="title">Time Blocking App ⏰</ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
+
+      <ThemedView style={styles.featuresContainer}>
+        <ThemedText type="subtitle" style={styles.featuresTitle}>
+          Features
         </ThemedText>
+        <ThemedView style={styles.featureBox}>
+          <ThemedText style={styles.featureText}>
+            <ThemedText style={styles.featureTextBold}>📅 Detailed Planning:</ThemedText> Organize your day with precision and simplicity.
+          </ThemedText>
+        </ThemedView>
+        <ThemedView style={styles.featureBox}>
+          <ThemedText style={styles.featureText}>
+            <ThemedText style={styles.featureTextBold}>🖱️ Drag-and-Drop:</ThemedText> Easily adjust your schedule with intuitive drag-and-drop functionality.
+          </ThemedText>
+        </ThemedView>
+        <ThemedView style={styles.featureBox}>
+          <ThemedText style={styles.featureText}>
+            <ThemedText style={styles.featureTextBold}>📊 Visualization:</ThemedText> Get a clear overview of your tasks and time blocks.
+          </ThemedText>
+        </ThemedView>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  heroContainer: {
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#A1CEDC",
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+
+  featuresContainer: {
+    padding: 20,
+    backgroundColor: "#ffffff",
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  featuresTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
+  featureBox: {
+    backgroundColor: "#d3d3d3",
+    padding: 15,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  featureText: {
+    fontSize: 18,
+  },
+
+  featureTextBold: {
+    fontSize: 18,
+    fontWeight: "600"
+  },
+
 });
