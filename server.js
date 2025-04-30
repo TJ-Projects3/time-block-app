@@ -1,50 +1,25 @@
-
+// server.js
+require('./db'); // This will run db.js and connect MongoDB
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+const connectDB = require('./db');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
+// Connect to MongoDB
+connectDB();
+
+// Middleware
 app.use(cors());
-app.use(bodyParser.json());
-
-// Mock data
-let tasks = [];
-let users = [];
+app.use(express.json());
 
 // Routes
+app.use('/api/tasks', require('./routes/taskRoutes')); // 👈 Mounts taskRoutes under /api/tasks
+
 app.get('/', (req, res) => {
-    res.send('Welcome to AI Time Blocker Backend (Node.js)!');
+  res.send('API is running...');
 });
 
-// Task routes
-app.get('/api/tasks', (req, res) => {
-    res.json(tasks);
-});
-
-app.post('/api/tasks', (req, res) => {
-    const task = req.body;
-    tasks.push(task);
-    res.status(201).send('Task created!');
-});
-
-// User routes
-app.get('/api/users', (req, res) => {
-    res.json(users);
-});
-
-app.post('/api/users', (req, res) => {
-    const user = req.body;
-    users.push(user);
-    res.status(201).send('User added!');
-});
-
-// Calendar route placeholder
-app.get('/api/calendar/sync', (req, res) => {
-    res.send('Calendar sync feature coming soon!');
-});
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Start the server
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
