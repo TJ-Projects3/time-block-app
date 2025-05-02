@@ -17,7 +17,7 @@ export default function HomeScreen() {
       }
     >
       <ThemedView>
-        <ThemedText type="title">Time Blocking App ⏰</ThemedText>
+        <ThemedText type="title">Time Blocking Productivity App ⏰</ThemedText>
       </ThemedView>
 
       <ThemedView style={styles.featuresContainer}>
