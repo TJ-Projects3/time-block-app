@@ -1,11 +1,15 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, StatusBar, Platform } from 'react-native';
 import CalendarView from '../components/CalendarView';
+import DailyTimeline from '../components/DailyTime';
+import App from '../components/TODO';
 
 const CalendarScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <CalendarView />
+      <DailyTimeline />
+      <App />
     </SafeAreaView>
   );
 };
