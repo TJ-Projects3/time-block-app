@@ -30,11 +30,21 @@ const CalendarView: React.FC = () => {
           textDisabledColor: isDark ? '#6B7280' : '#D1D5DB',
           arrowColor: isDark ? '#F9FAFB' : '#4B5563',
           monthTextColor: isDark ? '#F3F4F6' : '#1F2937',
-          textMonthFontSize: 18,
-          textDayFontSize: 16,
-          textDayHeaderFontSize: 14,
+          textMonthFontSize: 20,         // a little smaller
+          textDayFontSize: 16,            // a little smaller
+          textDayHeaderFontSize: 13,      // a little smaller
+          // Stretch calendar rows properly
+          'stylesheet.calendar.main': {
+            week: {
+              marginTop: 1,
+              marginBottom: 1,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              height: 50, // 🔥 slightly smaller than before
+            }
+          },
         }}
-      />
+        enableSwipeMonths={true}/>
     </View>
   );
 };
@@ -46,11 +56,12 @@ const getTodayDate = (): string => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 60,
+    paddingTop: 20,
     paddingHorizontal: 10,
   },
   calendar: {
-    flex: 1,
+    height: 460,
+    width: '375%', // take full width of parent
     borderRadius: 20,
     overflow: 'hidden',
     elevation: 5,
