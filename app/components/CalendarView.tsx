@@ -17,7 +17,7 @@ const CalendarView: React.FC = () => {
   return (
     <View style={[styles.container, { backgroundColor: isDark ? '#111827' : '#F9FAFB' }]}>
       <Calendar
-        onDayPress={(day: { dateString: string }) => setSelectedDate(day.dateString)}
+        onDayPress={(day) => setSelectedDate(day.dateString)}
         markedDates={getMarkedDates()}
         style={styles.calendar}
         theme={{
