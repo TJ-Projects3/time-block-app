@@ -42,9 +42,27 @@ To learn more about developing your project with Expo, look at the following res
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+## 🧠 AI Time Blocker Backend
 
-Join our community of developers creating universal apps.
+This is a Node.js + Express + MongoDB backend API for authenticated task management.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 🔒 Features
+- User Registration & Login
+- JWT Authentication
+- Per-user Task Storage
+- Full Task CRUD: Create, Read, Update, Delete
+- MongoDB Atlas integration
+- Protected routes using middleware
+
+### 📦 Tech Stack
+- Node.js + Express
+- MongoDB + Mongoose
+- JSON Web Tokens (JWT)
+- Postman (for testing)
+
+### 📌 How to Run Locally
+```bash
+npm install
+node server.js
+
+

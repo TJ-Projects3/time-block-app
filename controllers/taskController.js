@@ -1,17 +1,60 @@
-// Controller for handling task-related logic
+const Task = require('../models/taskModel');
 
-// [POST] Create a new task
-exports.createTask = (req, res) => {
-    const { title } = req.body;  // Extract 'title' from the request body
-    // In a real app, we would save to a database here
-    res.status(201).json({ message: `Task '${title}' created successfully!` });
+// CREATE Task
+exports.createTask = async (req, res) => {
+  const { title, description, priority, status } = req.body;
+
+  if (!title || !description) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  try {
+    const task = await Task.create({
+      title,
+      description,
+      priority: priority || 'normal',
+      status: status || 'pending',
+      user: req.user.id
+    });
+
+    res.status(201).json({ message: 'Task created successfully', task });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 };
 
-// [GET] Retrieve all tasks
-exports.getTasks = (req, res) => {
-    // In a real app, we would fetch tasks from a database
-    res.json([
-        { id: 1, title: "Example Task 1" },
-        { id: 2, title: "Example Task 2" }
-    ]);
+// READ Tasks
+exports.getTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find({ user: req.user.id });
+    res.status(200).json({ tasks });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+// UPDATE Task
+exports.updateTask = async (req, res) => {
+  try {
+    const task = await Task.findOneAndUpdate(
+      { _id: req.params.id, user: req.user.id },
+      req.body,
+      { new: true }
+    );
+    if (!task) return res.status(404).json({ message: 'Task not found' });
+    res.json({ message: 'Task updated', task });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+// DELETE Task
+exports.deleteTask = async (req, res) => {
+  try {
+    const task = await Task.findOneAndDelete({ _id: req.params.id, user: req.user.id });
+    if (!task) return res.status(404).json({ message: 'Task not found' });
+    res.json({ message: 'Task deleted' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 };
