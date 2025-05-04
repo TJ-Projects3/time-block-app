@@ -81,10 +81,7 @@ const DailyTimeline = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '50%', // Take 1/4 of the screen width
-    height: '100%', // Full height
-    position: 'absolute', // Position it absolutely
-    right: 0, // Align it to the right
+    flex: 1,
     backgroundColor: '#000', // Black background
     padding: 16,
   },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, useColorScheme } from 'react-native';
+import { View, StyleSheet, useColorScheme, BackHandler } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 const CalendarView: React.FC = () => {
@@ -46,7 +46,8 @@ const getTodayDate = (): string => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 60,
+    paddingTop: 10,
+    paddingBottom: 10,
     paddingHorizontal: 10,
   },
   calendar: {

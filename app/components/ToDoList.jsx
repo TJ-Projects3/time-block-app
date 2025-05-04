@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, CheckBox } from 'react-native';
 
-export default function App() {
+export default function ToDoList() {
   const [task, setTask] = useState('');
   const [time, setTime] = useState('');
   const [tasks, setTasks] = useState([]);
@@ -64,14 +64,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute', // Position the component absolutely
-    bottom: 0, // Align it to the bottom
-    left: 0, // Align it to the left
-    width: '50%', // Take up half the screen width
-    height: '35%',
+    flex: 1,
     backgroundColor: '#222', // Dark background
-    padding: 20,
-    borderTopRightRadius: 10, // Rounded corner on the top-right
+    padding: 10,
+    borderRadius: 10, // Rounded corner on the top-right
   },
   title: {
     fontSize: 24,
